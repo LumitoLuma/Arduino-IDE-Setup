@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    string exec = "\"" + (string) ProgFiles + (string)"\\Inno Setup 6\\iscc.exe\" ..\\release.iss";
+    string exec = "\"" + (string) ProgFiles + (string)"\\Inno Setup 6\\iscc.exe\" ..\\Release.iss";
     int err = system(exec.c_str());
     printf("\nThe program exited with code %d.\n", err);
     exit(err);
