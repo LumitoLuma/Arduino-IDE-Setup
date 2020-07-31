@@ -29,6 +29,7 @@ SetupIconFile=resources\app.ico
 SolidCompression=yes
 Compression=lzma2/ultra64
 LZMANumBlockThreads=5
+LZMADictionarySize=1048576
 LZMANumFastBytes=273
 LZMAUseSeparateProcess=yes
 UninstallDisplayName={#AppName}
