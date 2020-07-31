@@ -22,7 +22,7 @@ jobs:
   - script: |
       cd ISCompiler
       ISCompil.exe
-    displayName: 'Compiling Arduino Pro IDE using ISCompiler.exe'
+    displayName: 'Compiling Arduino Pro IDE using ISCompil.exe'
 
   - task: PublishPipelineArtifact@1
     inputs:
