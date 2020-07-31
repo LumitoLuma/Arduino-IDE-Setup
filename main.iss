@@ -28,6 +28,7 @@ OutputBaseFilename=Arduino-Pro.IDE.Setup
 SetupIconFile=resources\app.ico
 SolidCompression=yes
 Compression=lzma2/ultra64
+LZMANumBlockThreads=5
 LZMANumFastBytes=273
 LZMAUseSeparateProcess=yes
 UninstallDisplayName={#AppName}
