@@ -2,9 +2,9 @@ name: Inno Setup
 
 on:
   push:
-    branches: [ lzma2 ]
+    branches: [ master ]
   pull_request:
-    branches: [ lzma2 ]
+    branches: [ master ]
 
 jobs:
   build:
