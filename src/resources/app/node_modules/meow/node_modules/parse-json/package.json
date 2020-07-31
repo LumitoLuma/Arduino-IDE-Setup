@@ -1,0 +1,26 @@
+{
+  "name": "parse-json",
+  "version": "2.2.0",
+  "description": "Parse JSON with more helpful errors",
+  "license": "MIT",
+  "repository": "sindresorhus/parse-json",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js",
+    "vendor"
+  ],
+  "dependencies": {
+    "error-ex": "^1.2.0"
+  },
+  "devDependencies": {
+    "ava": "0.0.4",
+    "xo": "*"
+  }
+}

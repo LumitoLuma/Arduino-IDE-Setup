@@ -1,0 +1,12 @@
+{
+  "name": "is-utf8",
+  "version": "0.2.1",
+  "description": "Detect if a buffer is utf8 encoded.",
+  "main": "is-utf8.js",
+  "repository": "https://github.com/wayfind/is-utf8.git",
+  "files": [
+    "is-utf8.js"
+  ],
+  "author": "wayfind",
+  "license": "MIT"
+}

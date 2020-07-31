@@ -1,0 +1,25 @@
+{
+  "name": "lcid",
+  "version": "1.0.0",
+  "description": "Mapping between standard locale identifiers and Windows locale identifiers (LCID)",
+  "license": "MIT",
+  "repository": "sindresorhus/lcid",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js",
+    "lcid.json"
+  ],
+  "dependencies": {
+    "invert-kv": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "0.0.4"
+  }
+}

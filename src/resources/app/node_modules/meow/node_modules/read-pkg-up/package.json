@@ -1,0 +1,26 @@
+{
+  "name": "read-pkg-up",
+  "version": "1.0.1",
+  "description": "Read the closest package.json file",
+  "license": "MIT",
+  "repository": "sindresorhus/read-pkg-up",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "find-up": "^1.0.0",
+    "read-pkg": "^1.0.0"
+  },
+  "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+  }
+}

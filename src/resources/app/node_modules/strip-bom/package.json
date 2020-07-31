@@ -1,0 +1,24 @@
+{
+  "name": "strip-bom",
+  "version": "2.0.0",
+  "description": "Strip UTF-8 byte order mark (BOM) from a string/buffer",
+  "license": "MIT",
+  "repository": "sindresorhus/strip-bom",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "is-utf8": "^0.2.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

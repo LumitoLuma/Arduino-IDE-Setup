@@ -1,0 +1,70 @@
+"use strict";
+// tslint:disable:file-header
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+// Based on: https://github.com/Microsoft/vscode/blob/dd3e2d94f81139f9d18ba15a24c16c6061880b93/extensions/git/src/askpass-main.ts.
+Object.defineProperty(exports, "__esModule", { value: true });
+var url = require("url");
+var http = require("http");
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function fatal(err) {
+    console.error('Missing or invalid credentials.');
+    console.error(err);
+    process.exit(1);
+}
+// 1. Node.js executable path. In this particular case it is Electron.
+// 2. The location of the corresponding JS file of the current (`__filename`) file.
+// 3. `Username`/`Password`.
+// 4. `for`.
+// 5. The host. For example: `https://github.com`.
+var expectedArgvCount = 5;
+function main(argv) {
+    if (argv.length !== expectedArgvCount) {
+        fatal("Wrong number of arguments. Expected " + expectedArgvCount + ". Got " + argv.length + " instead.");
+        return;
+    }
+    if (!process.env['THEIA_GIT_ASKPASS_HANDLE']) {
+        fatal("Missing 'THEIA_GIT_ASKPASS_HANDLE' handle.");
+        return;
+    }
+    var handle = process.env['THEIA_GIT_ASKPASS_HANDLE'];
+    var _a = url.parse(handle), host = _a.host, hostname = _a.hostname, port = _a.port, protocol = _a.protocol;
+    var gitRequest = argv[2];
+    var gitHost = argv[4].substring(1, argv[4].length - 2);
+    var opts = {
+        host: host,
+        hostname: hostname,
+        port: port,
+        protocol: protocol,
+        path: '/',
+        method: 'POST'
+    };
+    var req = http.request(opts, function (res) {
+        if (res.statusCode !== 200) {
+            fatal("Bad status code: " + res.statusCode + ".");
+            return;
+        }
+        var chunks = [];
+        res.setEncoding('utf8');
+        res.on('data', function (d) { return chunks.push(d); });
+        res.on('end', function () {
+            var raw = chunks.join('');
+            try {
+                var result = JSON.parse(raw);
+                process.stdout.write(result);
+            }
+            catch (err) {
+                fatal('Error parsing the response.');
+                return;
+            }
+            setTimeout(function () { return process.exit(0); }, 0);
+        });
+    });
+    req.on('error', function (err) { return fatal(err); });
+    req.write(JSON.stringify({ gitRequest: gitRequest, gitHost: gitHost }));
+    req.end();
+}
+main(process.argv);
+//# sourceMappingURL=askpass-main.js.map
