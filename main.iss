@@ -1,5 +1,5 @@
 #define AppName "Arduino Pro IDE"
-#define AppVersion "0.0.6"
+#define AppVersion "0.0.6.0"
 #define AppPublisher "Arduino LLC"
 #define AppURL "https://www.arduino.cc/pro/arduino-pro-ide"
 #define AppExeName "Arduino Pro IDE.exe"
