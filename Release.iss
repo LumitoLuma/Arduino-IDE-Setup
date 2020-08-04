@@ -36,7 +36,6 @@ UninstallDisplayName={#AppName}
 UninstallDisplayIcon="{app}\Arduino Pro IDE.exe,0"
 WizardImageFile=resources\side.bmp
 WizardSmallImageFile=resources\head.bmp
-WizardResizable=false
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
