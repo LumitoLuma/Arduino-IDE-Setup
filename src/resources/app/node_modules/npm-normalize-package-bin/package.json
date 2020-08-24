@@ -1,0 +1,14 @@
+{
+  "name": "npm-normalize-package-bin",
+  "version": "1.0.1",
+  "description": "Turn any flavor of allowable package.json bin into a normalized object",
+  "repository": "git+https://github.com/npm/npm-normalize-package-bin",
+  "author": "Isaac Z. Schlueter <i@izs.me> (https://izs.me)",
+  "license": "ISC",
+  "tap": {
+    "check-coverage": true
+  },
+  "devDependencies": {
+    "tap": "^14.10.2"
+  }
+}

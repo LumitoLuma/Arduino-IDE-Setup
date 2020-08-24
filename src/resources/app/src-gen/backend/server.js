@@ -1,5 +1,11 @@
 // @ts-check
 require('reflect-metadata');
+
+// Patch electron version if missing, see https://github.com/eclipse-theia/theia/pull/7361#pullrequestreview-377065146
+if (typeof process.versions.electron === 'undefined' && typeof process.env.THEIA_ELECTRON_VERSION === 'string') {
+    process.versions.electron = process.env.THEIA_ELECTRON_VERSION;
+}
+
 const path = require('path');
 const express = require('express');
 const { Container } = require('inversify');
@@ -36,6 +42,7 @@ function start(port, host, argv) {
 module.exports = (port, host, argv) => Promise.resolve()
     .then(function () { return Promise.resolve(require('@theia/core/lib/electron-node/keyboard/electron-backend-keyboard-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/core/lib/electron-node/token/electron-token-backend-module')).then(load) })
+    .then(function () { return Promise.resolve(require('@theia/process/lib/common/process-common-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/process/lib/node/process-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/filesystem/lib/node/filesystem-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/filesystem/lib/node/download/file-download-backend-module')).then(load) })
@@ -43,7 +50,6 @@ module.exports = (port, host, argv) => Promise.resolve()
     .then(function () { return Promise.resolve(require('@theia/languages/lib/node/languages-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/terminal/lib/node/terminal-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/task/lib/node/task-backend-module')).then(load) })
-    .then(function () { return Promise.resolve(require('@theia/cpp/lib/node/cpp-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/debug/lib/node/debug-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/file-search/lib/node/file-search-backend-module')).then(load) })
     .then(function () { return Promise.resolve(require('@theia/search-in-workspace/lib/node/search-in-workspace-backend-module')).then(load) })

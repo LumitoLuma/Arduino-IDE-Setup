@@ -15,16 +15,21 @@ if (process.env.LC_ALL) {
 }
 process.env.LC_NUMERIC = 'C';
 
-const uuid = require('uuid');
+const { v4 } = require('uuid');
 const electron = require('electron');
 const { join, resolve } = require('path');
 const { fork } = require('child_process');
 const { app, dialog, shell, BrowserWindow, ipcMain, Menu, globalShortcut } = electron;
 const { ElectronSecurityToken } = require('@theia/core/lib/electron-common/electron-token');
 
+// Fix the window reloading issue, see: https://github.com/electron/electron/issues/22119
+app.allowRendererProcessReuse = false;
+
 const applicationName = `Arduino Pro IDE`;
 const isSingleInstance = false;
-const disallowReloadKeybinding = true;
+const disallowReloadKeybinding = false;
+const defaultWindowOptionsAdditions = {};
+
 
 if (isSingleInstance && !app.requestSingleInstanceLock()) {
     // There is another instance running, exit now. The other instance will request focus.
@@ -37,14 +42,13 @@ const Storage = require('electron-store');
 const electronStore = new Storage();
 
 const electronSecurityToken = {
-    value: uuid.v4(),
+    value: v4(),
 };
 
-app.on('ready', () => {
+// Make it easy for renderer process to fetch the ElectronSecurityToken:
+global[ElectronSecurityToken] = electronSecurityToken;
 
-    if (disallowReloadKeybinding) {
-        globalShortcut.register('CmdOrCtrl+R', () => {});
-    }
+app.on('ready', () => {
 
     // Explicitly set the app name to have better menu items on macOS. ("About", "Hide", and "Quit")
     // See: https://github.com/electron-userland/electron-builder/issues/2468
@@ -54,7 +58,7 @@ app.on('ready', () => {
 
     // Remove the default electron menus, waiting for the application to set its own.
     Menu.setApplicationMenu(Menu.buildFromTemplate([{
-        role: 'help', submenu: [{ role: 'toggledevtools'}]
+        role: 'help', submenu: [{ role: 'toggleDevTools' }]
     }]));
 
     function createNewWindow(theUrl) {
@@ -62,8 +66,8 @@ app.on('ready', () => {
         // We must center by hand because `browserWindow.center()` fails on multi-screen setups
         // See: https://github.com/electron/electron/issues/3490
         const { bounds } = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
-        const height = Math.floor(bounds.height * (2/3));
-        const width = Math.floor(bounds.width * (2/3));
+        const height = Math.floor(bounds.height * (2 / 3));
+        const width = Math.floor(bounds.width * (2 / 3));
 
         const y = Math.floor(bounds.y + (bounds.height - height) / 2);
         const x = Math.floor(bounds.x + (bounds.width - width) / 2);
@@ -72,6 +76,13 @@ app.on('ready', () => {
         const windowState = electronStore.get(WINDOW_STATE, {
             width, height, x, y
         });
+
+        const persistedWindowOptionsAdditions = electronStore.get('windowOptions', {});
+
+        const windowOptionsAdditions = {
+            ...defaultWindowOptionsAdditions,
+            ...persistedWindowOptionsAdditions
+        };
 
         let windowOptions = {
             show: false,
@@ -82,7 +93,11 @@ app.on('ready', () => {
             minHeight: 120,
             x: windowState.x,
             y: windowState.y,
-            isMaximized: windowState.isMaximized
+            isMaximized: windowState.isMaximized,
+            ...windowOptionsAdditions,
+            webPreferences: {
+                nodeIntegration: true
+            }
         };
 
         // Always hide the window, we will show the window when it is ready to be shown in any case.
@@ -91,6 +106,14 @@ app.on('ready', () => {
             newWindow.maximize();
         }
         newWindow.on('ready-to-show', () => newWindow.show());
+        if (disallowReloadKeybinding) {
+            newWindow.on('focus', event => {
+                for (const accelerator of ['CmdOrCtrl+R', 'F5']) {
+                    globalShortcut.register(accelerator, () => { });
+                }
+            });
+            newWindow.on('blur', event => globalShortcut.unregisterAll());
+        }
 
         // Prevent calls to "window.open" from opening an ElectronBrowser window,
         // and rather open in the OS default web browser.
@@ -131,16 +154,15 @@ app.on('ready', () => {
         newWindow.on('move', saveWindowStateDelayed);
 
         // Fired when a beforeunload handler tries to prevent the page unloading
-        newWindow.webContents.on('will-prevent-unload', event => {
-            const preventStop = 0 !== dialog.showMessageBox(newWindow, {
+        newWindow.webContents.on('will-prevent-unload', async event => {
+            const { response } = await dialog.showMessageBox(newWindow, {
                 type: 'question',
                 buttons: ['Yes', 'No'],
                 title: 'Confirm',
                 message: 'Are you sure you want to quit?',
                 detail: 'Any unsaved changes will not be saved.'
             });
-
-            if (!preventStop) {
+            if (response === 0) { // 'Yes'
                 // This ignores the beforeunload callback, allowing the page to unload
                 event.preventDefault();
             }
@@ -172,10 +194,18 @@ app.on('ready', () => {
     ipcMain.on('open-external', (event, url) => {
         shell.openExternal(url);
     });
+    ipcMain.on('set-window-options', (event, options) => {
+        electronStore.set('windowOptions', options);
+    });
+    ipcMain.on('get-persisted-window-options-additions', event => {
+        event.returnValue = electronStore.get('windowOptions', {});
+    });
 
     // Check whether we are in bundled application or development mode.
     // @ts-ignore
     const devMode = process.defaultApp || /node_modules[/]electron[/]/.test(process.execPath);
+    // Check if we should run everything as one process.
+    const noBackendFork = process.argv.includes('--no-cluster');
     const mainWindow = createNewWindow();
 
     if (isSingleInstance) {
@@ -190,19 +220,18 @@ app.on('ready', () => {
         })
     }
 
-    const loadMainWindow = (port) => {
+    const setElectronSecurityToken = async port => {
+        await electron.session.defaultSession.cookies.set({
+            url: `http://localhost:${port}/`,
+            name: ElectronSecurityToken,
+            value: JSON.stringify(electronSecurityToken),
+            httpOnly: true
+        });
+    };
+
+    const loadMainWindow = port => {
         if (!mainWindow.isDestroyed()) {
-            mainWindow.webContents.session.cookies.set({
-                url: `http://localhost:${port}/`,
-                name: ElectronSecurityToken,
-                value: JSON.stringify(electronSecurityToken),
-            }, error => {
-                if (error) {
-                    console.error(error);
-                } else {
-                    mainWindow.loadURL('file://' + join(__dirname, '../../lib/index.html') + '?port=' + port);
-                }
-            });
+            mainWindow.loadURL('file://' + join(__dirname, '../../lib/index.html') + '?port=' + port);
         }
     };
 
@@ -213,29 +242,41 @@ app.on('ready', () => {
 
     // Set the electron version for both the dev and the production mode. (https://github.com/eclipse-theia/theia/issues/3254)
     // Otherwise, the forked backend processes will not know that they're serving the electron frontend.
-    const { versions } = process;
-    // @ts-ignore
-    if (versions && typeof versions.electron !== 'undefined') {
-        // @ts-ignore
-        process.env.THEIA_ELECTRON_VERSION = versions.electron;
-    }
+    // The forked backend should patch its `process.versions.electron` with this value if it is missing.
+    process.env.THEIA_ELECTRON_VERSION = process.versions.electron;
 
     const mainPath = join(__dirname, '..', 'backend', 'main');
-    // We need to distinguish between bundled application and development mode when starting the clusters.
-    // See: https://github.com/electron/electron/issues/6337#issuecomment-230183287
-    if (devMode) {
+    // We spawn a separate process for the backend for Express to not run in the Electron main process.
+    // See: https://github.com/eclipse-theia/theia/pull/7361#issuecomment-601272212
+    // But when in debugging we want to run everything in the same process to make things easier.
+    if (noBackendFork) {
         process.env[ElectronSecurityToken] = JSON.stringify(electronSecurityToken);
-        require(mainPath).then(address => {
+        require(mainPath).then(async (address) => {
+            await setElectronSecurityToken(address.port);
             loadMainWindow(address.port);
         }).catch((error) => {
             console.error(error);
             app.exit(1);
         });
     } else {
-        const cp = fork(mainPath, [], { env: Object.assign({
-            [ElectronSecurityToken]: JSON.stringify(electronSecurityToken),
-        }, process.env) });
-        cp.on('message', (address) => {
+        // We want to pass flags passed to the Electron app to the backend process.
+        // Quirk: When developing from sources, we execute Electron as `electron.exe electron-main.js ...args`, but when bundled,
+        // the command looks like `bundled-application.exe ...args`.
+        let args = process.argv.slice(devMode ? 2 : 1);
+        if (process.platform === 'darwin') {
+            // https://github.com/electron/electron/issues/3657
+            // https://stackoverflow.com/questions/10242115/os-x-strange-psn-command-line-parameter-when-launched-from-finder#comment102377986_10242200
+            // macOS appends an extra `-psn_0_someNumber` arg if a file is opened from Finder after downloading from the Internet.
+            // "AppName" is an app downloaded from the Internet. Are you sure you want to open it?
+            args = args.filter(arg => !arg.startsWith('-psn'));
+        }
+        const cp = fork(mainPath, args, {
+            env: Object.assign({
+                [ElectronSecurityToken]: JSON.stringify(electronSecurityToken),
+            }, process.env)
+        });
+        cp.on('message', async (address) => {
+            await setElectronSecurityToken(address.port);
             loadMainWindow(address.port);
         });
         cp.on('error', (error) => {

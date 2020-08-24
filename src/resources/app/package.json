@@ -1,12 +1,11 @@
 {
   "private": true,
   "name": "arduino-pro-ide",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "scripts/arduino-pro-ide-electron-main.js",
   "dependencies": {
     "@theia/core": "next",
-    "@theia/cpp": "next",
     "@theia/debug": "next",
     "@theia/editor": "next",
     "@theia/electron": "next",
@@ -32,9 +31,18 @@
         "applicationName": "Arduino Pro IDE",
         "defaultTheme": "arduino-theme",
         "preferences": {
-          "editor.autoSave": "on"
+          "editor.autoSave": "on",
+          "editor.minimap.enabled": false,
+          "editor.tabSize": 2,
+          "editor.scrollBeyondLastLine": false
         },
         "disallowReloadKeybinding": true
+      }
+    },
+    "backend": {
+      "config": {
+        "configDirName": ".arduinoProIDE",
+        "singleInstance": true
       }
     },
     "generator": {
@@ -43,13 +51,12 @@
       }
     }
   },
-  "description": "Arduino Pro IDE",
   "author": "Arduino SA",
   "resolutions": {
     "**/fs-extra": "^4.0.3"
   },
   "engines": {
-    "node": ">=10.11.0 <12"
+    "node": ">=10.11.0 <13"
   },
   "repository": {
     "type": "git",
@@ -60,6 +67,7 @@
   ],
   "theiaPluginsDir": "plugins",
   "theiaPlugins": {
-    "vscode-yaml": "https://github.com/redhat-developer/vscode-yaml/releases/download/0.7.2/redhat.vscode-yaml-0.7.2.vsix"
-  }
+    "vscode-builtin-cpp": "http://open-vsx.org/api/vscode/cpp/1.44.2/file/vscode.cpp-1.44.2.vsix"
+  },
+  "description": "Arduino Pro IDE"
 }
