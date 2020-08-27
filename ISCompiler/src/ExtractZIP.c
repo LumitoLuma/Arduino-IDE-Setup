@@ -5,7 +5,7 @@ int on_extract_entry(const char* filename, void* arg)
 {
     static int i = 0;
     int n = *(int*)arg;
-    printf("\r- Extracting file %d of %d (this will take a while)...", ++i, n);
+    printf("\r- Extracting file %d of %d (this may take a while)...", ++i, n);
     fflush(stdout);
     return 0;
 }
