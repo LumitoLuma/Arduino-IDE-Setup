@@ -16,9 +16,6 @@ jobs:
     - name: Enable Developer Command Prompt
       uses: ilammy/msvc-dev-cmd@v1.3.0
 
-    - name: Compile ISCompil.cpp
-      run: cd ISCompiler && cl ISCompil.cpp
-
     - name: Compile Inno Setup script using ISCompil.exe
       run: cd ISCompiler && .\ISCompil.exe
 

@@ -1,8 +1,7 @@
 os: windows
 language: C
 install:
-  - choco.exe install innosetup
+  - choco.exe innosetup -y
 script:
   - cd ISCompiler
-  - g++ ISCompil.cpp -o ISCompil.exe
   - ./ISCompil.exe
