@@ -13,9 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Enable Developer Command Prompt
-      uses: ilammy/msvc-dev-cmd@v1.3.0
-
     - name: Compile Inno Setup script using ISCompil.exe
       run: cd ISCompiler && .\ISCompil.exe
 
