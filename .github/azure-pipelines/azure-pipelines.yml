@@ -13,11 +13,6 @@ jobs:
 
   - script: |
       cd ISCompiler
-      cl.exe ISCompil.cpp
-    displayName: 'Compiling ISCompil.cpp'
-
-  - script: |
-      cd ISCompiler
       ISCompil.exe
     displayName: 'Compiling Arduino Pro IDE using ISCompil.exe'
 
