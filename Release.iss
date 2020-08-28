@@ -1,6 +1,5 @@
 #define AppName "Arduino Pro IDE"
-#define AppVersion "0.1.1.0"
-#define ShortAppVer "0.1.1"
+#define AppVersion "0.1.1"
 #define AppPublisher "Arduino LLC"
 #define AppURL "https://www.arduino.cc/pro/arduino-pro-ide"
 #define AppExeName "Arduino Pro IDE.exe"
@@ -46,7 +45,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
 
 [Files]
-Source: "arduino-pro-ide_{#ShortAppVer}_Windows_64bit\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "arduino-pro-ide_{#AppVersion}_Windows_64bit\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}";
