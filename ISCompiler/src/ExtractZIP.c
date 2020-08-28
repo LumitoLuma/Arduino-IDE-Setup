@@ -14,6 +14,6 @@ void ExtractZIP(const char* file, const char* destination)
 {
     struct zip_t* zip = zip_open(file, 0, 'r');
     int arg = zip_total_entries(zip);
-	zip_extract(file, destination, on_extract_entry, &arg);
+    zip_extract(file, destination, on_extract_entry, &arg);
     printf(" Done!\n");
 }
