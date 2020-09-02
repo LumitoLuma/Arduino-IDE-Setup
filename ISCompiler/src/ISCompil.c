@@ -31,8 +31,7 @@ int main(int argc, char* argv[])
     int error;
     if (argc > 1 && strcmp(argv[1], "release") == 0)
     {
-        HANDLE hConsole;
-        hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
         FlushConsoleInputBuffer(hConsole);
         SetConsoleTextAttribute(hConsole, 14); // Yellow
         printf("--- WARNING! COMPILING AS EXPERIMENTAL RELEASE MODE ---\n\n");
