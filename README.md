@@ -1,7 +1,7 @@
 # Arduino Pro IDE - Setup
 
 ## What is Arduino Pro IDE - Setup
-In 2019, [Arduino](https://arduino.cc) launched a new development environment called Arduino Pro IDE, which will (probably) replace the classic Arduino IDE at some time.
+In 2019, [Arduino](https://arduino.cc) launched a new development environment called [Arduino Pro IDE](https://github.com/arduino/arduino-pro-ide), which will (probably) replace the classic Arduino IDE at some time.
 
 The problem is that the original product is only a (big) portable version.
 
