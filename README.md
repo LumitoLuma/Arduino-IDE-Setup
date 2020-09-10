@@ -17,7 +17,7 @@ To fix this problem, I created an Inno Setup wizard for the application, so you 
     ```batch
     git clone --depth 1 https://github.com/LumitoLuma/ArduinoProIDE-Setup.git
     ```
-    This will only download the latest commit, since old ones may require a lot of hard disk space.
+    This will only download the latest commit, since the old ones requires lot of hard disk space.
 2.  Run `ISCompil.exe` from `ISCompiler` folder.
 3.  Wait some minutes...
 4.  Check Release folder and enjoy!
