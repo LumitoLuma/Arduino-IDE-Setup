@@ -7,7 +7,7 @@ void ExtractZIP(const char*, const char*);
 
 void PreCompile()
 {
-    DownloadCurl("https://downloads.arduino.cc/arduino-pro-ide/arduino-pro-ide_0.1.1_Windows_64bit.zip", "arduino_pro_ide_x64.zip");
+    DownloadCurl("https://downloads.arduino.cc/arduino-pro-ide/arduino-pro-ide_0.1.2_Windows_64bit.zip", "arduino_pro_ide_x64.zip");
     ExtractZIP("arduino_pro_ide_x64.zip", "..");
 }
 
