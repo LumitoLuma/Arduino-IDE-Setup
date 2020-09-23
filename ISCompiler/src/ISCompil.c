@@ -39,6 +39,16 @@ int main(int argc, char* argv[])
         PreCompile();
         error = RunCompiler(true);
     }
+    else if (argc > 1 && strcmp(argv[1], "downloadonly") == 0)
+    {
+        HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+        FlushConsoleInputBuffer(hConsole);
+        SetConsoleTextAttribute(hConsole, 14); // Yellow
+        printf("--- THE REQUIRED FILES WILL BE DOWNLOADED, BUT NOT COMPILED ---\n\n");
+        SetConsoleTextAttribute(hConsole, 15); // White
+        PreCompile();
+        int error = 0;
+    }
     else
     {
         PreCompile();

@@ -1,7 +1,6 @@
 #define AppName "Arduino Pro IDE"
 #define AppVersion "0.1.2"
-#define AppPublisher "Arduino LLC"
-#define AppURL "https://www.arduino.cc/pro/arduino-pro-ide"
+#define AppPublisher "Arduino LLC & Lumito"
 #define AppExeName "Arduino Pro IDE.exe"
 
 [Setup]
@@ -12,20 +11,20 @@ AppVerName={#AppName} {#AppVersion}
 VersionInfoVersion={#AppVersion}
 AppCopyright=© 2020, {#AppPublisher}
 AppPublisher={#AppPublisher}
-AppPublisherURL={#AppURL}
-AppSupportURL={#AppURL}
-AppUpdatesURL={#AppURL}
-DefaultDirName={userappdata}\Arduino-Pro\IDE
+AppPublisherURL="https://www.arduino.cc/pro/arduino-pro-ide"
+AppSupportURL="https://github.com/arduino/arduino-pro-ide/issues"
+AppUpdatesURL="https://github.com/arduino/arduino-pro-ide"
+DefaultDirName={userappdata}\ArduinoProIDE
 DirExistsWarning=yes
 DisableWelcomePage=no
 DisableProgramGroupPage=yes
 UsedUserAreasWarning=no
-LicenseFile=resources\LICENSE.txt
+LicenseFile=resources/LICENSE.txt
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
 OutputDir=Release
 OutputBaseFilename=Arduino-Pro.IDE.Setup
-SetupIconFile=resources\app.ico
+SetupIconFile=resources/app.ico
 SolidCompression=yes
 Compression=lzma2/ultra64
 LZMANumBlockThreads=5
@@ -33,8 +32,8 @@ LZMANumFastBytes=273
 LZMAUseSeparateProcess=yes
 UninstallDisplayName={#AppName}
 UninstallDisplayIcon="{app}\Arduino Pro IDE.exe,0"
-WizardImageFile=resources\side.bmp
-WizardSmallImageFile=resources\head.bmp
+WizardImageFile=resources/side.bmp
+WizardSmallImageFile=resources/head.bmp
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

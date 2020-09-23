@@ -1,8 +1,8 @@
 #include <winres.h>
 
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION    2, 1, 0, 0
-PRODUCTVERSION 2, 1, 0, 0
+FILEVERSION    2, 1, 0, 1
+PRODUCTVERSION 2, 1, 0, 1
 FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
 FILEFLAGS 0x1L
@@ -19,11 +19,11 @@ FILESUBTYPE 0x0L
         {
             VALUE "CompanyName", "Lumito, www.lumito.net\0"
             VALUE "FileDescription", "A tool to compile Arduino Pro IDE Setup\0"
-            VALUE "FileVersion", "2.1.0.0\0"
+            VALUE "FileVersion", "2.1.0.1\0"
             VALUE "InternalName", "ISCompil\0"
             VALUE "LegalCopyright", "© 2020, Lumito\0"
             VALUE "ProductName", "ISCompiler\0"
-            VALUE "ProductVersion", "2.1.0.0\0"
+            VALUE "ProductVersion", "2.1.0.1\0"
         }
     }
 
