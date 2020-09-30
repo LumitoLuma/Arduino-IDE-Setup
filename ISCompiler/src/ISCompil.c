@@ -13,7 +13,7 @@ void PreCompile()
 
 int RunCompiler(bool release)
 {
-    int err;
+    int err = 1;
     if (release)
     {
         err = system("\"" ProgFiles "\\Inno Setup 6\\iscc.exe\" ..\\Release.iss");
@@ -28,7 +28,7 @@ int RunCompiler(bool release)
 
 int main(int argc, char* argv[])
 {
-    int error;
+    int error = 1;
     if (argc > 1 && strcmp(argv[1], "release") == 0)
     {
         HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

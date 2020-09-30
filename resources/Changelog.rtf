@@ -1,0 +1,154 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang3082{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil Calibri;}{\f2\fnil\fcharset2 Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sl276\slmult1\ul\b\f0\fs32\lang10 Arduino Pro IDE Changelog\fs20\par
+\b0\fs24\par
+\ulnone\fs22 Visit {{\field{\*\fldinst{HYPERLINK https://github.com/LumitoLuma/ArduinoProIDE-Setup }}{\fldrslt{https://github.com/LumitoLuma/ArduinoProIDE-Setup\ul0\cf0}}}}\f0\fs22  for latest releases.\par
+\par
+\b\fs28 Version 0.1.2 (current):\b0\fs22\par
+\b Added:\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 ATL-78: Implemented include library. [7a37aa2]\par
+{\pntext\f2\'B7\tab}ATL-73: Added library examples to the app. [56ff866]\par
+{\pntext\f2\'B7\tab}ATL-302: Added built-in examples to the app. [1c9fcd0]\par
+{\pntext\f2\'B7\tab}ATL-61: Implemented burn bootloader. [b5d7c3b]\par
+
+\pard\sl276\slmult1\b Changed:\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Use 0.13.0 CLI. Updated version to 0.1.2. [fbebfc7]\par
+
+\pard\sl276\slmult1\b Fixed:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\b0 #337: Use bigger min window [c3eb3e4]\par
+{\pntext\f2\'B7\tab}Enabled file logging for the backend process. [30421f0]\par
+{\pntext\f2\'B7\tab}Better error handling when killing the BE process. [daa2579]\par
+{\pntext\f2\'B7\tab}Fixed the output channel registry for extensions. [ec8df37]\par
+{\pntext\f2\'B7\tab}Customized channel to cancel the queue on dispose. [cb24571]\par
+{\pntext\f2\'B7\tab}Patched the menu ordering. (Workaround for eclipse-theia/theia#8377) [2f8e28b]\par
+{\pntext\f2\'B7\tab}#336: Fixed 'Save As...' [524fbbd]\par
+
+\pard\sl276\slmult1\par
+\b\fs28 Version 0.1.1:\b0\fs22\par
+\b Changed:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\b0 Updated the arduino-cli to version 0.12.1.\par
+
+\pard\sl276\slmult1\b Fixed:\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Verify and Upload button doesn't work #311\par
+{\pntext\f2\'B7\tab}v0.1.0 - Using TheadDebug Lib: GDB Debugger Terminated Unexpectedly. #312\par
+{\pntext\f2\'B7\tab}Sketch folder name not recognised #318\par
+
+\pard\sl276\slmult1\par
+\b\fs28 Version 0.1.0:\fs32\par
+\fs22 Added:\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Added logic to recover invalid sketch when opening it.\par
+{\pntext\f2\'B7\tab}Better label provider for unsaved sketches. Create a new sketch, and hover over the editor's tab. It shows unsaved. It was a long temp path before.\par
+
+\pard\sl276\slmult1\b Changed:\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\b0 Updates the CLI version to 0.12.0.\par
+{\pntext\f2\'B7\tab}From now on, new tabs always open after the last tab. Previously, new tabs were opened after the current tab.\par
+{\pntext\f2\'B7\tab}Reimplemented missing LoadSketch in TypeScript.\par
+{\pntext\f2\'B7\tab}Adjusts the Output styles to the Java IDE.\par
+{\pntext\f2\'B7\tab}Fixed copy for Forum/GitHub. In case of no or empty selection, the entire editor content is copied. Otherwise, the selected text.\par
+{\pntext\f2\'B7\tab}From now on, toggling the serial monitor will dispose the serial monitor view instead of toggling the bottom panel.\par
+{\pntext\f2\'B7\tab}Removes the keybinding for indent/outdent lines menu items. The functionality remains the same.\par
+{\pntext\f2\'B7\tab}Refined and generalized which tabs are closable and which not. All files that belong to a sketch (SketchLoad) must be non-closeable in normal mode.\par
+{\pntext\f2\'B7\tab}Refined new file and rename file. Adjusted the input dialog behavior to the Java IDE.\par
+{\pntext\f2\'B7\tab}Made the Daemon output channel more relaxed. It should never activate on Daemon input.\par
+{\pntext\f2\'B7\tab}The board search is fuzzy now.\par
+{\pntext\f2\'B7\tab}We clear the upload/compile consoles before running upload/compile.\par
+{\pntext\f2\'B7\tab}Aligned the New and Save As... with the Java IDE.\par
+{\pntext\f2\'B7\tab}Rework the menu organization\par
+{\pntext\f2\'B7\tab}The copy of Arduino CLI embedded in the Arduino Pro IDE installation is always used, rather than picking up an external Arduino CLI installation if it is in PATH.\par
+
+\pard\sl276\slmult1\b Fixed:\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Makes sure the main sketch file has the focus at app startup without focusing on other editors.\par
+{\pntext\f2\'B7\tab}Fixed save as.\par
+{\pntext\f2\'B7\tab}Upload using a programmer does not require a serial port.\par
+{\pntext\f2\'B7\tab}Fixed serial monitor issue. Previously, the board had to be manually re-selected after an upload.\par
+{\pntext\f2\'B7\tab}Fixed deletion. When deleting the main sketch file, the window closes.\par
+{\pntext\f2\'B7\tab}Fixed issue when Output grabbed the focus when the user was searching for a board with the board config dialog.\par
+{\pntext\f2\'B7\tab}The Output automatically expands on upload/compile and on errors.\par
+{\pntext\f2\'B7\tab}Added a workaround for path too long on Windows by removing the YAML VS Code extension from the final app.\par
+
+\pard\sl276\slmult1\par
+\b\fs28 Version 0.0.6-alpha.preview:\fs32\par
+\fs22 New and noteworthy:\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\f1 Support for the CLI configuration: You can install 3rd party cores.\par
+{\pntext\f2\'B7\tab}Support for the 3rd party core settings: You can specify board-specific settings from the menu. (#10)\par
+{\pntext\f2\'B7\tab}[experimental]: Boards Control: try it with Ctrl/Cmd+K Ctrl/Cmd+B search for a board, configure the actual 3rd party core settings, or pick one of the available boards.\par
+{\pntext\f2\'B7\tab}Support better unknown (3rd party) board detection. (#198)\par
+{\pntext\f2\'B7\tab}From now on, the boards-search is fuzzy. (#223)\par
+{\pntext\f2\'B7\tab}Switched to native grpc in the final app.\par
+
+\pard\sl276\slmult1\b Fixes:\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 The ZIP structure of the final app for Linux and Windows has changed. (#229)\par
+{\pntext\f2\'B7\tab}The serial monitor does not expect a \\n. (#201)\par
+{\pntext\f2\'B7\tab}Toggling editor mode does not delete code. (#192)\par
+{\pntext\f2\'B7\tab}Fixed an issue with the editor-focus when opening multiple editors asynchronously. (#201)\par
+{\pntext\f2\'B7\tab}Application settings now stored under ~/.arduinoProIDE. (#184)\f0\par
+
+\pard\sl276\slmult1\f1\par
+\b\f0\fs28 Version 0.0.5-alpha.preview:\fs32\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\b0\fs22 Debugger support for SAMD boards\par
+{\pntext\f2\'B7\tab}Bugfixes\par
+
+\pard\sl276\slmult1\par
+\b\fs28 Version 0.0.4-alpha.preview:\fs32\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\b0\fs22 Automatic Arduino language server (LS) recovery. From now on, if the LS process terminates, it restarts automatically.\par
+{\pntext\f2\'B7\tab}Updated the bundled Clang version to 9.0.0. Bundled Clangd into the application for all supported platforms.\par
+{\pntext\f2\'B7\tab}Better keybinding support for the upload, verify, and the serial monitor.\par
+
+\pard\sl276\slmult1\par
+\b\fs28 Version 0.0.3-alpha.preview:\fs32\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\b0\fs22 Install/uninstall/update cores and libs (pinning a specific version)\par
+{\pntext\f2\'B7\tab}Fixed macOS shortcuts\par
+{\pntext\f2\'B7\tab}Restore last opened sketch when switching mode\par
+{\pntext\f2\'B7\tab}Fixed search toolbar for libs\par
+{\pntext\f2\'B7\tab}Select the right CLI version to avoid conflict with local installations\par
+{\pntext\f2\'B7\tab}Avoid duplicates in outline view\par
+{\pntext\f2\'B7\tab}Fixed serial monitor\par
+{\pntext\f2\'B7\tab}Confirm Exit is now working\par
+{\pntext\f2\'B7\tab}Fixed text contrast while using the dark theme\par
+
+\pard\sl276\slmult1\par
+\b\fs28 Version 0.0.2-alpha.preview:\fs32\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1\b0\fs22 Fixed board detection on all OS\par
+{\pntext\f2\'B7\tab}Solved issue with arduino-cli not loading if spaces are in path\par
+{\pntext\f2\'B7\tab}Automatic core\par
+{\pntext\f2\'B7\tab}Added documentation about clang for Linux\par
+
+\pard\sl276\slmult1\par
+\b\fs28 Version 0.0.1-alpha.preview-snapshot-20191021.1:\b0\fs22\par
+\b Bug Fixes Release\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Board detection\par
+{\pntext\f2\'B7\tab}Board uploading\par
+{\pntext\f2\'B7\tab}Core installation\par
+
+\pard\sl276\slmult1\par
+\b\fs28 Version 0.0.1:\b0\fs22\par
+\b Main Features:\b0\par
+
+\pard{\pntext\f2\'B7\tab}{\*\pn\pnlvlblt\pnf2\pnindent0{\pntxtb\'B7}}\fi-360\li720\sl276\slmult1 Core Install\par
+{\pntext\f2\'B7\tab}Lib Install\par
+{\pntext\f2\'B7\tab}Board List\par
+{\pntext\f2\'B7\tab}Basic auto completion (ARM targets only)\par
+{\pntext\f2\'B7\tab}Pro Mode (File System view)\par
+{\pntext\f2\'B7\tab}Git integration\par
+{\pntext\f2\'B7\tab}Serial Monitor\par
+
+\pard\sl276\slmult1\par
+\fs18 Visit {{\field{\*\fldinst{HYPERLINK https://github.com/arduino/arduino-pro-ide/releases }}{\fldrslt{https://github.com/arduino/arduino-pro-ide/releases\ul0\cf0}}}}\f0\fs18  for an extended changelog.\fs22\par
+}
+ 

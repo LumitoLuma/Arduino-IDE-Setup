@@ -20,6 +20,7 @@ DisableWelcomePage=no
 DisableProgramGroupPage=yes
 UsedUserAreasWarning=no
 LicenseFile=resources/LICENSE.txt
+InfoBeforeFile=resources/Changelog.rtf
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=commandline
 OutputDir=Release
