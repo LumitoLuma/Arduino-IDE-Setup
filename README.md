@@ -29,6 +29,12 @@ ISCompil.exe release
 ```
 Instead of the original command in step 2.
 
+Also, you can run:
+```batch
+ISCompil.exe downloadonly
+```
+To download and extract the files without creating the installer.
+
 ### Downloading the compiled version
 View [releases](https://github.com/LumitoLuma/ArduinoProIDE-Setup/releases) for more information about downloading a compiled version of this program.
 
