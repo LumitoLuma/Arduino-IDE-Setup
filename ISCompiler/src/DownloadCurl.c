@@ -1,8 +1,13 @@
+/* (C) 2020, Lumito - www.lumito.net */
+
 #pragma warning(disable : 4996) // Disables insecure file warnings
 
 #include <curl/curl.h>
 #include <math.h>
 #include <stdio.h>
+
+char* fname;
+byte isshrt;
 
 /* Thanks fvu from Stack Overflow! */
 size_t write_data(void* ptr, size_t size, size_t nmemb, FILE* stream)
@@ -24,7 +29,14 @@ int progress_func(void* ptr, double TotalToDownload, double NowDownloaded,
     int dotz = (int)round(fractiondownloaded * totaldotz);
 
     int ii = 0;
-    printf("- Downloading Arduino Pro IDE...\t");
+    if (isshrt)
+    {
+        printf("- Downloading %s...\t\t", fname);
+    }
+    else
+    {
+        printf("- Downloading %s...\t", fname);
+    }
     printf("%3.0f%% [", fractiondownloaded * 100);
     for (; ii < dotz; ii++)
     {
@@ -47,16 +59,20 @@ int progress_func(void* ptr, double TotalToDownload, double NowDownloaded,
     return 0;
 }
 
-void DownloadCurl(const char* url, char outputfile[FILENAME_MAX])
+/* This is mine */
+void DownloadCurl(const char* url, char outputfile[FILENAME_MAX], byte shrt)
 {
     CURL* curl;
     FILE* file;
     CURLcode code;
     curl = curl_easy_init();
+    fname = outputfile;
+    if (shrt) { isshrt = 1; } else { isshrt = 0; }
     if (curl)
     {
         file = fopen(outputfile, "wb");
         curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, file);
         curl_easy_setopt(curl, CURLOPT_NOPROGRESS, FALSE);
@@ -64,6 +80,6 @@ void DownloadCurl(const char* url, char outputfile[FILENAME_MAX])
         code = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         fclose(file);
-        printf("- Downloading Arduino Pro IDE... Done!  100%% [===============================]\n");
+        printf("- Downloading %s... Done!\t100%% [===============================]\n", outputfile);
     }
 }

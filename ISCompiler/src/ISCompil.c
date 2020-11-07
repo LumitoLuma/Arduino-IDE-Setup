@@ -1,13 +1,17 @@
-#include "include/findarc.h"
+/* (C) 2020, Lumito - www.lumito.net */
+
 #include <stdbool.h>
 #include <stdio.h>
+#include <Windows.h>
 
-void DownloadCurl(const char*, char[FILENAME_MAX]);
-void ExtractZIP(const char*, const char*);
+void DownloadCurl(const char*, char[FILENAME_MAX], byte);
+void ExtractZIP(char[FILENAME_MAX], const char*);
 
 void PreCompile()
 {
-    DownloadCurl("https://downloads.arduino.cc/arduino-pro-ide/arduino-pro-ide_0.1.2_Windows_64bit.zip", "arduino_pro_ide_x64.zip");
+    DownloadCurl("https://dl.lumito.net/public/repos/ArduinoProIDE-Setup/ISCompil/portable-isc.zip", "portable-isc.zip", 0);
+    DownloadCurl("https://downloads.arduino.cc/arduino-pro-ide/arduino-pro-ide_0.1.2_Windows_64bit.zip", "arduino_pro_ide_x64.zip", 0);
+    ExtractZIP("portable-isc.zip", ".");
     ExtractZIP("arduino_pro_ide_x64.zip", "..");
 }
 
@@ -16,11 +20,11 @@ int RunCompiler(bool release)
     int err = 1;
     if (release)
     {
-        err = system("\"" ProgFiles "\\Inno Setup 6\\iscc.exe\" ..\\Release.iss");
+        err = system("isc\\ISCC.exe ..\\Release.iss");
     }
     else
     {
-        err = system("\"" ProgFiles "\\Inno Setup 6\\iscc.exe\" ..\\main.iss");
+        err = system("isc\\ISCC.exe ..\\main.iss");
     }
     printf("\nThe program exited with code %d.\n", err);
     return err;

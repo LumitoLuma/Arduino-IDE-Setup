@@ -173,7 +173,6 @@ copy /y "$(ProjectDir)x64\Release\ISCompil.exe" "$(ProyectDir)bin\"</Command>
     <ClCompile Include="ISCompil.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\findarc.h" />
     <ClInclude Include="include\miniz.h" />
     <ClInclude Include="include\zip.h" />
   </ItemGroup>
