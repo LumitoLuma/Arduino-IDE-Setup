@@ -39,12 +39,17 @@ WizardSmallImageFile=resources/head.bmp
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
+[Messages]
+BeveledLabel=www.lumito.net
+
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 6.1; Check: not IsAdminInstallMode
+Name: "installgit"; Description: "Install Git for Windows (Requires .NET Framework >= 4.0)"; Flags: unchecked
 
 [Files]
 Source: "arduino-pro-ide_{#AppVersion}_Windows_64bit\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "ISCompiler\Git-Installer.exe"; DestDir: "{app}\resources\app\Git"; Flags: ignoreversion recursesubdirs; Tasks: installgit
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}";
@@ -56,3 +61,4 @@ Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#AppName}"; Filen
 
 [Run]
 Filename: "{app}\{#AppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(AppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\resources\app\Git\Git-Installer.exe"; Description: "Install Git for Windows"; Tasks: installgit; Flags: skipifsilent

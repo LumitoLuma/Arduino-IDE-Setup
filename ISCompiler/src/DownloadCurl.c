@@ -7,7 +7,7 @@
 #include <stdio.h>
 
 char* fname;
-byte isshrt;
+byte fshort;
 
 /* Thanks fvu from Stack Overflow! */
 size_t write_data(void* ptr, size_t size, size_t nmemb, FILE* stream)
@@ -29,7 +29,7 @@ int progress_func(void* ptr, double TotalToDownload, double NowDownloaded,
     int dotz = (int)round(fractiondownloaded * totaldotz);
 
     int ii = 0;
-    if (isshrt)
+    if (fshort || fshort == 2)
     {
         printf("- Downloading %s...\t\t", fname);
     }
@@ -67,7 +67,7 @@ void DownloadCurl(const char* url, char outputfile[FILENAME_MAX], byte shrt)
     CURLcode code;
     curl = curl_easy_init();
     fname = outputfile;
-    if (shrt) { isshrt = 1; } else { isshrt = 0; }
+    if (shrt) { fshort = 1; } else { fshort = 0; }
     if (curl)
     {
         file = fopen(outputfile, "wb");
@@ -80,6 +80,13 @@ void DownloadCurl(const char* url, char outputfile[FILENAME_MAX], byte shrt)
         code = curl_easy_perform(curl);
         curl_easy_cleanup(curl);
         fclose(file);
-        printf("- Downloading %s... Done!\t100%% [===============================]\n", outputfile);
+        if (shrt && shrt != 2)
+        {
+            printf("- Downloading %s... Done!\t\t100%% [===============================]\n", outputfile);
+        }
+        else
+        {
+            printf("- Downloading %s... Done!\t100%% [===============================]\n", outputfile);
+        }
     }
 }

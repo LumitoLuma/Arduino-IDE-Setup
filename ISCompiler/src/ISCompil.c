@@ -9,8 +9,9 @@ void ExtractZIP(char[FILENAME_MAX], const char*);
 
 void PreCompile()
 {
-    DownloadCurl("https://dl.lumito.net/public/repos/ArduinoProIDE-Setup/ISCompil/portable-isc.zip", "portable-isc.zip", 0);
+    DownloadCurl("https://dl.lumito.net/public/repos/ArduinoProIDE-Setup/ISCompil/portable-isc.zip", "portable-isc.zip", 1);
     DownloadCurl("https://downloads.arduino.cc/arduino-pro-ide/arduino-pro-ide_0.1.2_Windows_64bit.zip", "arduino_pro_ide_x64.zip", 0);
+    DownloadCurl("https://dl.lumito.net/public/repos/ArduinoProIDE-Setup/ISCompil/Git-Installer.exe", "Git-Installer.exe", 2);
     ExtractZIP("portable-isc.zip", ".");
     ExtractZIP("arduino_pro_ide_x64.zip", "..");
 }
