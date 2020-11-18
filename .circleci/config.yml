@@ -9,10 +9,6 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Installing Inno Setup with Chocolatey
-          command: choco install innosetup -y
-
       - run: 
           name: Compiling Inno Setup script using ISCompil.exe
           command: |

@@ -10,7 +10,6 @@ To fix this problem, I created an Inno Setup wizard for the application, so you 
 ## Building source code
 ### Requirements
 -   Windows Operating System.
--   Inno Setup 6.
 
 ### Procedure
 1.  Download or clone the repository. If you decide to use the second option, please run the following command instead of the classic one:
