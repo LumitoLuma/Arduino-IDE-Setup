@@ -1,6 +1,6 @@
 #define AppName "Arduino Pro IDE"
-#define AppVersion "0.1.2"
-#define AppPublisher "Arduino LLC & Lumito"
+#define AppVersion "0.1.3"
+#define AppPublisher "Lumito"
 #define AppExeName "Arduino Pro IDE.exe"
 
 [Setup]
