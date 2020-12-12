@@ -12,6 +12,7 @@ To fix this problem, I created an Inno Setup wizard for the application, so you 
 -   Windows Operating System.
 
 ### Procedure
+**WARNING: Please clone all the file to a folder in the drive root, else it may not work (ex. C:\ArduinoProIDE-Setup)**
 1.  Download or clone the repository. If you decide to use the second option, please run the following command instead of the classic one:
     ```batch
     git clone --depth 1 https://github.com/LumitoLuma/ArduinoProIDE-Setup.git
