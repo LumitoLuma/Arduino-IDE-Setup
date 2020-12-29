@@ -50,7 +50,7 @@ Name: "installgit"; Description: "Install Git for Windows (Requires .NET Framewo
 
 [Files]
 Source: "arduino-pro-ide_{#AppVersion}_Windows_64bit\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "ISCompiler\Git-Installer.exe"; DestDir: "{app}\resources\app\Git"; Flags: ignoreversion recursesubdirs; Tasks: installgit
+Source: "ISCompiler/Git-Installer.exe"; DestDir: "{app}\resources\app\Git"; Flags: ignoreversion recursesubdirs; Tasks: installgit
 
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}";
