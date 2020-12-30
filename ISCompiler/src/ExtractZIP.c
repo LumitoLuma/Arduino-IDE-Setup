@@ -1,7 +1,7 @@
 /* (C) 2020, Lumito - www.lumito.net */
 
 #include <stdio.h>
-#include "include/zip.h"
+#include <kubazip/zip/zip.h>
 
 char* fname;
 

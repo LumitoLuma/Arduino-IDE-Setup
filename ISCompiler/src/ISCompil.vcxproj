@@ -169,12 +169,7 @@ copy /y "$(ProjectDir)x64\Release\ISCompil.exe" "$(ProyectDir)bin\"</Command>
   <ItemGroup>
     <ClCompile Include="DownloadCurl.c" />
     <ClCompile Include="ExtractZIP.c" />
-    <ClCompile Include="include\zip.c" />
     <ClCompile Include="ISCompil.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\miniz.h" />
-    <ClInclude Include="include\zip.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="App.rc" />
