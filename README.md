@@ -1,7 +1,7 @@
 # Arduino Pro IDE - Setup
 
 ## What is Arduino Pro IDE - Setup
-In 2019, [Arduino](https://arduino.cc) launched a new development environment called [Arduino Pro IDE](https://github.com/arduino/arduino-pro-ide), which will (probably) replace the classic Arduino IDE at some time.
+In 2019, [Arduino](https://www.arduino.cc) launched a new development environment called [Arduino Pro IDE](https://github.com/arduino/arduino-pro-ide), which will (probably) replace the classic Arduino IDE at some time.
 
 The problem is that the original product is only a (big) portable version.
 
@@ -10,7 +10,6 @@ To fix this problem, I created an Inno Setup wizard for the application, so you 
 ## Building source code
 ### Requirements
 -   Windows Operating System.
--   Inno Setup 6.
 
 ### Procedure
 **WARNING: Please clone all the file to a folder in the drive root, else it may not work (ex. C:\ArduinoProIDE-Setup)**
@@ -42,6 +41,6 @@ View [releases](https://github.com/LumitoLuma/ArduinoProIDE-Setup/releases) for 
 ### Acknowledgements
 I would like to thank to Arduino LLC. for offering the great Arduino software and boards.
 
-© 2019 - 2020, Arduino LLC.
+© 2019 - 2021, Arduino LLC.
 <br><br>
-**© 2020, Lumito - [www.lumito.net](https://www.lumito.net)**
+**© 2021, Lumito - [www.lumito.net](https://www.lumito.net)**
